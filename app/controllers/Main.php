@@ -22,6 +22,7 @@ class Main extends \app\core\Controller{
 		//2 get the information from the user and input it in the DB
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$person = new \app\models\Person();
+			// 
 			$person->setFirstName($_POST['firstName']);
 			$person->setLastName($_POST['lastName']);
 			$person->setNotes($_POST['notes']);
