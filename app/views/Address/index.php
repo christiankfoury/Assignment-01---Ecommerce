@@ -1,7 +1,7 @@
 <html>
 <head><title>Address for this person</title></head><body>
 
-<a href="/Address/insert/<?php echo $data['address']->addressId; ?>">Create a new address</a>
+<a href="/Address/insert/<?php echo $data['address']->address_id; ?>">Create a new address</a>
 
 <?php $this->view('Main/details',$data['address']); //call the animal details view ?>
 
@@ -20,9 +20,9 @@ foreach($data['address'] as $address){
 			<td>$address->zip_code</td>
 			<td>$address->country_code</td>
 			<td>
-				<a href='/Vaccine/details/$vaccine->vaccine_id'>details</a> | 
-				<a href='/Vaccine/edit/$vaccine->vaccine_id'>edit</a> | 
-				<a href='/Vaccine/delete/$vaccine->vaccine_id'>delete</a>
+				<a href='/Address/details/$vaccine->vaccine_id'>details</a> | 
+				<a href='/Address/edit/$vaccine->vaccine_id'>edit</a> | 
+				<a href='/Address/delete/$vaccine->vaccine_id'>delete</a>
 			</td>
 		</tr>";
 }

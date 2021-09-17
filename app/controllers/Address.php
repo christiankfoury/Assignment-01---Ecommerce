@@ -12,7 +12,7 @@ class Address extends \app\core\Controller{
 
 		// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
 		// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
-		$this->view('Vaccine/index',['addresses'=>$results,'person'=>$person]);
+		$this->view('Address/index',['addresses'=>$results,'person'=>$person]);
 	}
 
 
@@ -30,7 +30,7 @@ class Address extends \app\core\Controller{
 			$address->date = $_POST['country_code'];
 			$address->insert();
 			//redirect the user back to the index
-			header("location:/Vaccine/index/$person_id");
+			header("location:/Address/index/$person_id");
 
 		}else //1 present a form to the user
 			$this->view('Address/create',$person);
