@@ -45,7 +45,7 @@ class Address extends \app\core\Model{
 				,`city`=:city,`province`=:province,`zip_code`=:zip_code,`country_code`=:country_code
 				 WHERE address_id = :address_id';//always use the PK in the where clause
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['person_id'=>$this->person_id,'description'=>$this->description,'street_address'=>$this->street_addressm
+		$STMT->execute(['person_id'=>$this->person_id,'description'=>$this->description,'street_address'=>$this->street_address,
 				'city'=>$this->city,'province'=>$this->province,'zip_code'=>$this->zip_code,'country_code'=>$this->country_code]);//associative array with key => value pairs
 	}
 
