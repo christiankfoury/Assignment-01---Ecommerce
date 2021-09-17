@@ -22,9 +22,9 @@ foreach($data['addresses'] as $address){
 			<td>$address->zip_code</td>
 			<td>$address->country_code</td>
 			<td>
-				<a href='/Address/details/$vaccine->vaccine_id'>details</a> | 
-				<a href='/Address/edit/$vaccine->vaccine_id'>edit</a> | 
-				<a href='/Address/delete/$vaccine->vaccine_id'>delete</a>
+				<a href='/Address/details/$address->address_id'>details</a> | 
+				<a href='/Address/edit/$address->address_id'>edit</a> | 
+				<a href='/Address/delete/$address->address_id'>delete</a>
 			</td>
 		</tr>";
 }
