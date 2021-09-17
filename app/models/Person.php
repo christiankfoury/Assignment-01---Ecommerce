@@ -56,10 +56,10 @@ class Person extends \app\core\Model{
 		return $STMT->fetchAll();//returns an array of all the records
 	}
 
-	public function get($personId){
-		$SQL = 'SELECT * FROM person_information WHERE person_id = :personId';
+	public function get($person_id){
+		$SQL = 'SELECT * FROM person_information WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['personId'=>$personId]);
+		$STMT->execute(['person_id'=>$person_id]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Person');
 		return $STMT->fetch();//return the record
 	}
@@ -69,21 +69,21 @@ class Person extends \app\core\Model{
 	public function insert(){
 		$SQL = 'INSERT INTO person_information(first_name, last_name, notes) VALUES (:first_name,:last_name,:notes)';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['first_name'=>$this->firstName,'last_name'=>$this->lastName,'notes'=>$this->notes]);//associative array with key => value pairs
+		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name,'notes'=>$this->notes]);//associative array with key => value pairs
 	}
 
 	public function update(){//update an animal record
-		$SQL = 'UPDATE `animal` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :personId';
+		$SQL = 'UPDATE `animal` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['first_name'=>$this->firstName,'last_name'=>$this->lastName, 'notes' => $this->notes, 'personId'=>$this->personId]);//associative array with key => value pairs
+		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name, 'notes' => $this->notes, 'person_id'=>$this->personId]);//associative array with key => value pairs
 	}
 
 
 	// TODO DELETE ***
 	public function delete($person_id){//update an animal record
-		$SQL = 'DELETE FROM `person_information` WHERE person_id = :personId';
+		$SQL = 'DELETE FROM `person_information` WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['personId'=>$person_id]);
+		$STMT->execute(['person_id'=>$person_id]);
 	}
 
 }
