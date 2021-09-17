@@ -46,8 +46,8 @@ class Main extends \app\core\Controller{
 
 		if(isset($_POST['action'])){//am i submitting the form?
 			//handle the input overwriting the existing properties
-			$person->setFirst_Name($_POST['firstName']);
-			$person->setLast_Name($_POST['lastName']);
+			$person->setFirst_Name($_POST['first_name']);
+			$person->setLast_Name($_POST['last_name']);
 			$person->setNotes($_POST['notes']);
 			$person->update();//call the update SQL
 			//redirect after changes

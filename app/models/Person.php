@@ -73,7 +73,7 @@ class Person extends \app\core\Model{
 	}
 
 	public function update(){//update an animal record
-		$SQL = 'UPDATE `animal` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :person_id';
+		$SQL = 'UPDATE `person_information` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name, 'notes' => $this->notes, 'person_id'=>$this->person_id]);//associative array with key => value pairs
 	}
