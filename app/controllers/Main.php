@@ -23,8 +23,8 @@ class Main extends \app\core\Controller{
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$person = new \app\models\Person();
 			// 
-			$person->setFirst_Name($_POST['firstName']);
-			$person->setLast_Name($_POST['lastName']);
+			$person->setFirst_Name($_POST['first_name']);
+			$person->setLast_Name($_POST['last_name']);
 			$person->setNotes($_POST['notes']);
 			$person->insert();
 			//redirect the user back to the index
