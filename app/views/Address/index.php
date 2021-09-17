@@ -7,7 +7,8 @@
 
 <!-- CHANGE THIS COLUMNS -->
 <table>
-	<tr><th>Type</th><th>Date</th><th>actions</th></tr>
+	<tr><th>Address ID</th><th>Person ID</th><th>Description</th><th>Street Address</th>
+	<th>city</th><th>province</th><th>zip code</th><th>country code</th></tr>
 <?php
 foreach($data['addresses'] as $address){
 
