@@ -23,8 +23,8 @@ class Main extends \app\core\Controller{
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$person = new \app\models\Person();
 			// 
-			$person->setFirstName($_POST['firstName']);
-			$person->setLastName($_POST['lastName']);
+			$person->setFirst_Name($_POST['firstName']);
+			$person->setLast_Name($_POST['lastName']);
 			$person->setNotes($_POST['notes']);
 			$person->insert();
 			//redirect the user back to the index
@@ -46,8 +46,8 @@ class Main extends \app\core\Controller{
 
 		if(isset($_POST['action'])){//am i submitting the form?
 			//handle the input overwriting the existing properties
-			$person->setFirstName($_POST['firstName']);
-			$person->setLastName($_POST['lastName']);
+			$person->setFirst_Name($_POST['firstName']);
+			$person->setLast_Name($_POST['lastName']);
 			$person->setNotes($_POST['notes']);
 			$person->update();//call the update SQL
 			//redirect after changes

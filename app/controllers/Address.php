@@ -3,12 +3,12 @@ namespace app\controllers;
 
 class Address extends \app\core\Controller{
 
-	public function index($personId){//listing the records related to an animal
+	public function index($person_id){//listing the records related to an animal
 		$myVaccine = new \app\models\Address();
-		$results = $myVaccine->getAll($personId);//get all shots for this one animal
+		$results = $myVaccine->getAll($person_id);//get all shots for this one animal
 
 		$person = new \app\models\Person;
-		$person = $person->get($personId);
+		$person = $person->get($person_id);
 
 		// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
 		// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
@@ -16,12 +16,12 @@ class Address extends \app\core\Controller{
 	}
 
 
-	public function insert($personId){//insert a new record ne known PK yet but I know the FK
+	public function insert($person_id){//insert a new record ne known PK yet but I know the FK
 		$person = new \app\models\Person;
-		$person = $person->get($personId);
+		$person = $person->get($person_id);
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$address = new \app\models\Address();
-			$address->personId = $personId;
+			$address->person_id = $person_id;
 			$address->type = $_POST['description'];
 			$address->date = $_POST['street_address'];
 			$address->date = $_POST['city'];
@@ -30,7 +30,7 @@ class Address extends \app\core\Controller{
 			$address->date = $_POST['country_code'];
 			$address->insert();
 			//redirect the user back to the index
-			header("location:/Vaccine/index/$personId");
+			header("location:/Vaccine/index/$person_id");
 
 		}else //1 present a form to the user
 			$this->view('Address/create',$person);

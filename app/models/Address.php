@@ -18,7 +18,7 @@ class Address extends \app\core\Model{
 	public function getAll($address_id){//be careful to restrict by parent
 		$SQL = 'SELECT * FROM address_information WHERE address_id=:address_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['address_id'=>$address_id);
+		$STMT->execute(['address_id'=>$address_id]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Address');
 		return $STMT->fetchAll();//returns an array of all the records
 	}

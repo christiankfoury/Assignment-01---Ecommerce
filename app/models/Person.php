@@ -2,9 +2,9 @@
 namespace app\models;
 
 class Person extends \app\core\Model{
-	public $personId;
-	public $firstName;
-	public $lastName;
+	public $person_id;
+	public $first_name;
+	public $last_name;
 	public $notes;
 	// static $number;
 
@@ -16,28 +16,28 @@ class Person extends \app\core\Model{
 	// 	return self::$number;
 	// }
 
-	public function setPersonId($personId){
-		$this->personId = $personId;
+	public function setPerson_Id($person_id){
+		$this->person_id = $person_id;
 	}
 
-	public function getPersonId(){
-		return $this->personId;
+	public function getPerson_Id(){
+		return $this->person_id;
 	}
 
-	public function setFirstName($firstName){
-		$this->firstName = $firstName;
+	public function setFirst_Name($first_name){
+		$this->first_name = $first_name;
 	}
 
-	public function getFirstName(){
-		return $this->firstName;
+	public function getFirst_Name(){
+		return $this->first_name;
 	}
 
-	public function setLastName($lastName){
-		$this->lastName = $lastName;
+	public function setLast_Name($last_name){
+		$this->last_name = $last_name;
 	}
 
-	public function getLastName(){
-		return $this->lastName;
+	public function getLast_Name(){
+		return $this->last_name;
 	}
 
 	public function setNotes($notes){
@@ -75,7 +75,7 @@ class Person extends \app\core\Model{
 	public function update(){//update an animal record
 		$SQL = 'UPDATE `animal` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name, 'notes' => $this->notes, 'person_id'=>$this->personId]);//associative array with key => value pairs
+		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name, 'notes' => $this->notes, 'person_id'=>$this->person_id]);//associative array with key => value pairs
 	}
 
 
