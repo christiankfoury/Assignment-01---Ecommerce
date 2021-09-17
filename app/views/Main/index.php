@@ -13,9 +13,11 @@ foreach($data as $person) {
 			<td>$person->last_name</td>
 			<td>$person->notes</td>
 			<td>
-				<a href='/Vaccine/details/$person->personId'>details</a> |
-				<a href='/Vaccine/edit/$person->personId'>edit</a> |
-				<a href='/Vaccine/delete/$person->personId'>delete</a>
+				<a href='/Main/details/$person->personId'>details</a> |
+				<a href='/Main/edit/$person->personId'>edit</a> |
+				<a href='/Main/delete/$person->personId'>delete</a> |
+				<a href='/Address/index/$person->personId'>address</a> |
+				<a href=''>pictures</a> |
 			</td>
 		</tr>";
 }
