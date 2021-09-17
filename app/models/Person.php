@@ -67,15 +67,15 @@ class Person extends \app\core\Model{
 	// ** CONTINUE FROM HERE
 
 	public function insert(){
-		$SQL = 'INSERT INTO person_information(firstName, lastName, notes) VALUES (:firstName,:lastName,:notes)';
+		$SQL = 'INSERT INTO person_information(first_name, last_name, notes) VALUES (:first_name,:last_name,:notes)';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['firstName'=>$this->firstName,'lastName'=>$this->lastName,'notes'=>$this->notes]);//associative array with key => value pairs
+		$STMT->execute(['first_name'=>$this->firstName,'last_name'=>$this->lastName,'notes'=>$this->notes]);//associative array with key => value pairs
 	}
 
 	public function update(){//update an animal record
-		$SQL = 'UPDATE `animal` SET `first_name`=:firstName,`last_name`=:lastName,`notes`=:notes WHERE person_id = :personId';
+		$SQL = 'UPDATE `animal` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :personId';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['firstName'=>$this->firstName,'lastName'=>$this->lastName, 'notes' => $this->notes, 'personId'=>$this->personId]);//associative array with key => value pairs
+		$STMT->execute(['first_name'=>$this->firstName,'last_name'=>$this->lastName, 'notes' => $this->notes, 'personId'=>$this->personId]);//associative array with key => value pairs
 	}
 
 
