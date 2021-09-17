@@ -30,7 +30,7 @@ class Address extends \app\core\Controller{
 			$address->date = $_POST['country_code'];
 			$address->insert();
 			//redirect the user back to the index
-			header("location:/Address/index/$person_id");
+			header("location:/Vaccine/index/$person_id");
 
 		}else //1 present a form to the user
 			$this->view('Address/create',$person);

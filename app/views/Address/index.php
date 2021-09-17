@@ -1,14 +1,15 @@
 <html>
 <head><title>Address for this person</title></head><body>
 
-<a href="/Address/insert/<?php echo $data['address']->address_id; ?>">Create a new address</a>
+<a href="/Address/insert/<?php echo $data['person']->person_id; ?>">Create a new address</a>
 
-<?php $this->view('Main/details',$data['address']); //call the animal details view ?>
+<?php $this->view('Main/details',$data['person']); //call the animal details view ?>
 
+<!-- CHANGE THIS COLUMNS -->
 <table>
 	<tr><th>Type</th><th>Date</th><th>actions</th></tr>
 <?php
-foreach($data['address'] as $address){
+foreach($data['addresses'] as $address){
 
 	echo "<tr>
 			<td>$address->address_id</td>
