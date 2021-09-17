@@ -57,9 +57,9 @@ class Main extends \app\core\Controller{
 	}
 
 	public function details($person_id){
-		$person_id = new \app\models\Person;
-		$person_id = $person_id->get($person_id);
-		$this->view('Main/details',$person_id);
+		$person = new \app\models\Person;
+		$person = $person->get($person_id);
+		$this->view('Main/details',$person);
 	}
 
 }

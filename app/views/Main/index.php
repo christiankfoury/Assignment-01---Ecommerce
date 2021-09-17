@@ -8,15 +8,15 @@
 foreach($data as $person) {
 
 	echo "<tr>
-			<td>$person->personId</td>
+			<td>$person->person_id</td>
 			<td>$person->first_name</td>
 			<td>$person->last_name</td>
 			<td>$person->notes</td>
 			<td>
-				<a href='/Main/details/$person->personId'>details</a> |
-				<a href='/Main/edit/$person->personId'>edit</a> |
-				<a href='/Main/delete/$person->personId'>delete</a> |
-				<a href='/Address/index/$person->personId'>address</a> |
+				<a href='/Main/details/$person->person_id'>details</a> |
+				<a href='/Main/edit/$person->person_id'>edit</a> |
+				<a href='/Main/delete/$person->person_id'>delete</a> |
+				<a href='/Address/index/$person->person_id'>address</a> |
 				<a href=''>pictures</a> |
 			</td>
 		</tr>";
