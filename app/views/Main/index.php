@@ -1,7 +1,7 @@
 <html>
 <head><title>Person Information Manager</title></head><body>
 
-<a href="/Main/insert"></a>
+<a href="/Main/insert">Add a new person</a>
 <table>
 	<tr><th>Person ID</th><th>First Name</th><th>Last Name</th><th>Notes</th></tr>
 <?php
