@@ -80,10 +80,17 @@ class Person extends \app\core\Model{
 
 
 	// TODO DELETE ***
-	public function delete($person_id){//update an animal record
+	public function delete($person_id){ //update an animal record
+		$SQL = 'DELETE FROM `address_information` WHERE person_id = :person_id';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['person_id' => $person_id]);
+
+		$SQL = 'DELETE FROM `pictures` WHERE person_id = :person_id';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['person_id' => $person_id]);
+
 		$SQL = 'DELETE FROM `person_information` WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['person_id'=>$person_id]);
 	}
-
 }
