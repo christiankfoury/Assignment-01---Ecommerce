@@ -58,11 +58,11 @@ class Address extends \app\core\Controller{
 	// 		$this->view('Main/edit',$animal);
 	// }
 
-	// public function details($animal_id){
-	// 	$animal = new \app\models\Animal;
-	// 	$animal = $animal->get($animal_id);
-	// 	$this->view('Main/details',$animal);
-	// }
+	public function details($address_id){
+		$address = new \app\models\Address;
+		$address = $address->get($address_id);
+		$this->view('Address/details',$address);
+	}
 
 	
 }

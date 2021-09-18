@@ -13,7 +13,6 @@ Adding an address for
 	Province: <input type='text' name='province' /><br>
 	Zip code: <input type='text' name='zip_code' /><br>
 	Country_code: <input type='text' name='country_code' /><br>
-	  <!-- <select name="country_code" id="country_code"> -->
 	<input type='submit' name='action' value='Create' />
 </form>
 
