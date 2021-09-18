@@ -21,7 +21,6 @@ class Picture extends \app\core\Controller{
 		$person = $person->get($person_id);
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$picture = new \app\models\Picture();
-			$picture->picture_id = $picture_id;
             $picture->person_id = $person_id;
 			$picture->description = $_POST['description'];
 			$picture->insert();
@@ -59,11 +58,10 @@ class Picture extends \app\core\Controller{
 	// 		$this->view('Address/edit',$address);
 	// }
 
-	// public function details($address_id){
-	// 	$address = new \app\models\Address;
-	// 	$address = $address->get($address_id);
-	// 	$this->view('Address/details',$address);
-	// }
-
+	public function details($picture_id){
+		$picture = new \app\models\Picture;
+		$picture = $picture->get($picture_id);
+		$this->view('Picture/details',$picture);
+	}
 	
 }
