@@ -21,7 +21,6 @@ class Picture extends \app\core\Controller{
 		$person = $person->get($person_id);
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$picture = new \app\models\Picture();
-			$picture->picture_id = $picture_id;
             $picture->person_id = $person_id;
 			$picture->description = $_POST['description'];
 			$picture->insert();
