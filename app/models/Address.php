@@ -64,9 +64,10 @@ class Address extends \app\core\Model{
 	}
 
 	public function delete($address_id){//delete a vaccine record
+		echo $address_id;
 		$SQL = 'DELETE FROM `address_information` WHERE address_id = :address_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['address'=>$address_id]);//associative array with key => value pairs
+		$STMT->execute(['address_id'=>$address_id]);//associative array with key => value pairs
 	}
 
 }

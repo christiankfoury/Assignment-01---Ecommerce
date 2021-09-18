@@ -1,14 +1,14 @@
 <?php
 namespace app\controllers;
 
-class Address extends \app\core\Controller{
+class Picture extends \app\core\Controller{
 
 	public function index($person_id){//listing the records related to an animal
-		$myAddress = new \app\models\Address();
-		$results = $myAddress->getAll($person_id);//get all shots for this one animal
+		$myPicture = new \app\models\Picture();
+		$results = $myPicture->getAll($picture_id);//get all shots for this one animal
 
-		$person = new \app\models\Person;
-		$person = $person->get($person_id);
+		$picture = new \app\models\Picture;
+		$picture = $picture->get($picture_id);
 
 		// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
 		// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
