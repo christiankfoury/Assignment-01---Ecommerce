@@ -12,7 +12,14 @@ Adding an address for
 	City: <input type='text' name='city' /><br>
 	Province: <input type='text' name='province' /><br>
 	Zip code: <input type='text' name='zip_code' /><br>
-	Country_code: <input type='text' name='country_code' /><br>
+	Country Code: <select name="country_code">
+    	<?php
+    	$myAddress = new \app\models\Address();
+		$countryResult = $myAddress->getCountries();?>
+		<?php foreach ($countryResult as $country) {?>
+			<option value="<?php echo $country->country_code;?>"><?php echo $country->country_code;?></option>
+		<?php }?>
+    </select><br>
 	<input type='submit' name='action' value='Create' />
 </form>
 

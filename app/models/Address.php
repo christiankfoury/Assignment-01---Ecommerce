@@ -31,6 +31,14 @@ class Address extends \app\core\Model{
 		return $STMT->fetch();//return the record
 	}
 
+	public function getCountries(){
+		$SQL = 'SELECT * FROM country';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute();
+		$STMT->setFetchMode(\PDO::FETCH_CLASS, 'app\\models\\Address');
+		return $STMT->fetchAll();//return the record
+	}
+
 	public function insert(){
 		//here we will have to add `` around field names
 		$SQL = 'INSERT INTO address_information(person_id,description,street_address,city,province,zip_code,country_code)
