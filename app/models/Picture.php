@@ -77,9 +77,9 @@ class Picture extends \app\core\Model
     public function insert()
     {
         //here we will have to add `` around field names
-        $SQL = 'INSERT INTO pictures(animal_id, fileName, description) VALUES (:person_id, :fileName, :description)';
+        $SQL = 'INSERT INTO pictures(person_id, description) VALUES (:person_id, :fileName, :description)';
         $STMT = self::$_connection->prepare($SQL);
-        $STMT->execute(['person_id' => $this->person_id, 'fileName' => $this->fileName, 'description' => $this->description]); //associative array with key => value pairs
+        $STMT->execute(['person_id' => $this->person_id,'description' => $this->description]); //associative array with key => value pairs
     }
 
     public function update()

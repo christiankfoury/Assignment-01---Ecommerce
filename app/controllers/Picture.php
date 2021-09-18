@@ -20,20 +20,16 @@ class Picture extends \app\core\Controller{
 		$person = new \app\models\Person;
 		$person = $person->get($person_id);
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
-			$address = new \app\models\Address();
-			$address->person_id = $person_id;
-			$address->description = $_POST['description'];
-			$address->street_address = $_POST['street_address'];
-			$address->city = $_POST['city'];
-			$address->province = $_POST['province'];
-			$address->zip_code = $_POST['zip_code'];
-			$address->country_code = $_POST['country_code'];
-			$address->insert();
+			$picture = new \app\models\Picture();
+			$picture->picture_id = $picture_id;
+            $picture->person_id = $person_id;
+			$picture->description = $_POST['description'];
+			$picture->insert();
 			//redirect the user back to the index
-			header("location:/Address/index/$person_id");
+			header("location:/Picture/index/$person_id");
 
 		}else //1 present a form to the user
-			$this->view('Address/create',$person);
+			$this->view('Picture/create',$person);
 	}
 
 	// public function delete($address_id){//delete a record with the known animal_id PK value
