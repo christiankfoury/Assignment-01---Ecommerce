@@ -22,15 +22,16 @@ class Address extends \app\core\Controller{
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
 			$address = new \app\models\Address();
 			$address->person_id = $person_id;
-			$address->type = $_POST['description'];
-			$address->date = $_POST['street_address'];
-			$address->date = $_POST['city'];
-			$address->date = $_POST['province'];
-			$address->date = $_POST['zip_code'];
-			$address->date = $_POST['country_code'];
+			$address->description = $_POST['description'];
+			$address->street_address = $_POST['street_address'];
+			$address->city = $_POST['city'];
+			$address->province = $_POST['province'];
+			$address->zip_code = $_POST['zip_code'];
+			$address->country_code = $_POST['country_code'];
 			$address->insert();
+			echo "HI";
 			//redirect the user back to the index
-			header("location:/Address/index/$person_id");
+			// header("location:/Address/index/$person_id");
 
 		}else //1 present a form to the user
 			$this->view('Address/create',$person);

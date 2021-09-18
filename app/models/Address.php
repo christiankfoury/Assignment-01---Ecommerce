@@ -33,11 +33,18 @@ class Address extends \app\core\Model{
 
 	public function insert(){
 		//here we will have to add `` around field names
-		$SQL = 'INSERT INTO address_infromation(person_id,`description`,street_address,city,province,zip_code,country_code)
-		 VALUES (:person_id,:`description`,:street_address,:city,:province,:zip_code,:country_code)'; //Description keyword
+		$SQL = 'INSERT INTO address_information(person_id,description,street_address,city,province,zip_code,country_code)
+		 VALUES (:person_id,:description,:street_address,:city,:province,:zip_code,:country_code)'; //Description keyword
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['person_id'=>$this->person_id,'description'=>$this->description,'street_address'=>$this->street_address,
-						'city'=>$this->city,'province'=>$this->province,'zip_code'=>$this->zip_code,'country_code'=>$this->country_code]);//associative array with key => value pairs
+		$STMT->execute([
+			'person_id' => $this->person_id,
+			'description' => $this->description,
+			'street_address' => $this->street_address,
+			'city' => $this->city,
+			'province' => $this->province,
+			'zip_code' => $this->zip_code,
+			'country_code' => $this->country_code
+		]);//associative array with key => value pairs
 	}
 
 	public function update(){//update an vaccine record but don't hange the FK value
