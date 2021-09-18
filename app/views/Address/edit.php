@@ -2,8 +2,8 @@
 <head><title>Edit an address record</title></head><body>
 Edit the address
 <form action='' method='post'>
-    Address ID: <input type='text' name='address_id' value='<?php echo $data->address_id; ?>' /><br>
-    Person ID: <input type='text' name='person_id' value='<?php echo $data->person_id; ?>' /><br>
+    Address ID: <input readonly type='text' name='address_id' value='<?php echo $data->address_id; ?>' /><br>
+    Person ID: <input readonly type='text' name='person_id' value='<?php echo $data->person_id; ?>' /><br>
 	Description: <input type='text' name='description' value='<?php echo $data->description; ?>' /><br>
 	Street Address: <input type='text' name='street_address' value='<?php echo $data->street_address; ?>' /><br>
 	City: <input type='text' name='city' value='<?php echo $data->city; ?>' /><br>
