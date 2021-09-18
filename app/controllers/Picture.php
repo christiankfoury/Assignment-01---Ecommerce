@@ -37,26 +37,21 @@ class Picture extends \app\core\Controller{
 	// 	header('location:/Main/index');
 	// }
 
-	// public function edit($address_id){//edit a record for te record with known animal_id PK
-	// 	$address = new \app\models\Address;
-	// 	$address = $address->get($address_id);
+	public function edit($picture_id){//edit a record for te record with known animal_id PK
+		$picture = new \app\models\Picture;
+		$picture = $picture->get($picture_id);
 
-	// 	if(isset($_POST['action'])){//am i submitting the form?
-	// 		//handle the input overwriting the existing properties
-	// 		$address->address_id = $_POST['address_id'];
-	// 		$address->person_id = $_POST['person_id'];
-	// 		$address->description = $_POST['description'];
-	// 		$address->street_address = $_POST['street_address'];
-	// 		$address->city = $_POST['city'];
-	// 		$address->province = $_POST['province'];
-	// 		$address->zip_code = $_POST['zip_code'];
-	// 		$address->country_code = $_POST['country_code'];
-	// 		$address->update(); //call the update SQL
-	// 		//redirect after changes
-	// 		header('location:/Main/index');
-	// 	}else
-	// 		$this->view('Address/edit',$address);
-	// }
+		if(isset($_POST['action'])){//am i submitting the form?
+			//handle the input overwriting the existing properties
+			$picture->picture_id = $_POST['picture_id'];
+			$picture->person_id = $_POST['person_id'];
+			$picture->description = $_POST['description'];
+			$picture->update(); //call the update SQL
+			//redirect after changes
+			header('location:/Main/index');
+		}else
+			$this->view('Picture/edit',$picture);
+	}
 
 	public function details($picture_id){
 		$picture = new \app\models\Picture;
