@@ -57,9 +57,9 @@ class Address extends \app\core\Controller{
 			$address->province = $_POST['province'];
 			$address->zip_code = $_POST['zip_code'];
 			$address->country_code = $_POST['country_code'];
-			$address->update();//call the update SQL
+			$address->update(); //call the update SQL
 			//redirect after changes
-			header('location:/Address/index');
+			header('location:/Main/index');
 		}else
 			$this->view('Address/edit',$address);
 	}
