@@ -15,21 +15,21 @@ class Address extends \app\core\Model{
 		parent::__construct();
 	}
 
-	public function getAll($address_id){//be careful to restrict by parent
-		$SQL = 'SELECT * FROM address_information WHERE address_id=:address_id';
+	public function getAll($person_id){//be careful to restrict by parent
+		$SQL = 'SELECT * FROM address_information WHERE person_id=:person_id';
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['address_id'=>$address_id]);
+		$STMT->execute(['person_id'=>$person_id]);
 		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Address');
 		return $STMT->fetchAll();//returns an array of all the records
 	}
 
-	public function get($address_id){
-		$SQL = 'SELECT * FROM address_information WHERE address_id = :address_id';
-		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['address_id'=>$address_id]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Address');
-		return $STMT->fetch();//return the record
-	}
+	// public function get($person_id){
+	// 	$SQL = 'SELECT * FROM address_information WHERE person_id = :person_id';
+	// 	$STMT = self::$_connection->prepare($SQL);
+	// 	$STMT->execute(['person_id'=>$person_id]);
+	// 	$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Address');
+	// 	return $STMT->fetch();//return the record
+	// }
 
 	public function insert(){
 		//here we will have to add `` around field names
