@@ -48,12 +48,34 @@ class Address extends \app\core\Model{
 	}
 
 	public function update(){//update an vaccine record but don't hange the FK value
-		$SQL = 'UPDATE `address_information` SET `person_id`=:person_id,`description`=:`description`,`street_address`=:street_address
+		echo $this->address_id;
+		echo "<br>";
+		echo $this->person_id;
+		echo "<br>";
+		echo $this->description;
+		echo "<br>";
+		echo $this->street_address;
+		echo "<br>";
+		echo $this->city;
+		echo "<br>";
+		echo $this->province;
+		echo "<br>";
+		echo $this->zip_code;
+		echo "<br>";
+		echo $this->country_code;
+		
+		$SQL = 'UPDATE `address_information` SET `person_id`=:person_id,description=:description,`street_address`=:street_address
 				,`city`=:city,`province`=:province,`zip_code`=:zip_code,`country_code`=:country_code
-				 WHERE address_id = :address_id';//always use the PK in the where clause
+				 WHERE address_id=:address_id';//always use the PK in the where clause
 		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['person_id'=>$this->person_id,'description'=>$this->description,'street_address'=>$this->street_address,
-				'city'=>$this->city,'province'=>$this->province,'zip_code'=>$this->zip_code,'country_code'=>$this->country_code]);//associative array with key => value pairs
+		$STMT->execute([
+			'person_id'=>$this->person_id,
+			'description'=>$this->description,
+			'street_address'=>$this->street_address,
+			'city'=>$this->city,
+			'province'=>$this->province,
+			'zip_code'=>$this->zip_code,
+			'country_code'=>$this->country_code]);//associative array with key => value pairs
 	}
 
 	public function delete($address_id){//delete a vaccine record
