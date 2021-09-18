@@ -31,11 +31,11 @@ class Picture extends \app\core\Controller{
 			$this->view('Picture/create',$person);
 	}
 
-	// public function delete($address_id){//delete a record with the known animal_id PK value
-	// 	$address = new \app\models\Address;
-	// 	$address->delete($address_id);
-	// 	header('location:/Main/index');
-	// }
+	public function delete($picture_id){//delete a record with the known animal_id PK value
+		$picture = new \app\models\Picture;
+		$picture->delete($picture_id);
+		header('location:/Main/index');
+	}
 
 	public function edit($picture_id){//edit a record for te record with known animal_id PK
 		$picture = new \app\models\Picture;
