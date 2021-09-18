@@ -4,8 +4,8 @@ namespace app\models;
 
 class Picture extends \app\core\Model
 {
-    public $pictureId;
-    public $personId;
+    public $picture_id;
+    public $person_id;
     public $fileName;
     public $description;
     // static $number;
@@ -15,28 +15,24 @@ class Picture extends \app\core\Model
         parent::__construct();
     }
 
-    // public function getNumberOfAnimals(){
-    // 	return self::$number;
-    // }
-
-    public function setPictureId($pictureId)
+    public function setPicture_id($picture_id)
     {
-        $this->pictureId = $pictureId;
+        $this->picture_id = $picture_id;
     }
 
-    public function getPictureId()
+    public function getPicture_id()
     {
-        return $this->pictureId;
+        return $this->picture_id;
     }
 
-    public function setPersonId($personId)
+    public function setPerson_id($person_id)
     {
-        $this->personId = $personId;
+        $this->person_id = $person_id;
     }
 
-    public function getPersonId()
+    public function getPerson_id()
     {
-        return $this->personId;
+        return $this->person_id;
     }
 
     public function setFileName($fileName)
@@ -60,20 +56,20 @@ class Picture extends \app\core\Model
     }
 
 
-    public function getAll($personId)
+    public function getAll($person_id)
     { //be careful to restrict by parent
-        $SQL = 'SELECT * FROM pictures WHERE person_id=:personId';
+        $SQL = 'SELECT * FROM pictures WHERE person_id=:person_id';
         $STMT = self::$_connection->prepare($SQL);
-        $STMT->execute(['personId' => $personId]);
+        $STMT->execute(['person_id' => $person_id]);
         $STMT->setFetchMode(\PDO::FETCH_CLASS, 'app\\models\\Picture');
         return $STMT->fetchAll(); //returns an array of all the records
     }
 
-    public function get($pictureId)
+    public function get($picture_id)
     {
-        $SQL = 'SELECT * FROM pictures WHERE picture_id = :pictureId';
+        $SQL = 'SELECT * FROM pictures WHERE picture_id = :picture_id';
         $STMT = self::$_connection->prepare($SQL);
-        $STMT->execute(['pictureId' => $pictureId]);
+        $STMT->execute(['picture_id' => $picture_id]);
         $STMT->setFetchMode(\PDO::FETCH_CLASS, 'app\\models\\Picture');
         return $STMT->fetch(); //return the record
     }
@@ -81,22 +77,22 @@ class Picture extends \app\core\Model
     public function insert()
     {
         //here we will have to add `` around field names
-        $SQL = 'INSERT INTO pictures(animal_id, fileName, description) VALUES (:personId, :fileName, :description)';
+        $SQL = 'INSERT INTO pictures(animal_id, fileName, description) VALUES (:person_id, :fileName, :description)';
         $STMT = self::$_connection->prepare($SQL);
-        $STMT->execute(['personId' => $this->personId, 'fileName' => $this->fileName, 'description' => $this->description]); //associative array with key => value pairs
+        $STMT->execute(['person_id' => $this->person_id, 'fileName' => $this->fileName, 'description' => $this->description]); //associative array with key => value pairs
     }
 
     public function update()
     { //update an vaccine record but don't hange the FK value
-        $SQL = 'UPDATE `pictures` SET `description`=:description WHERE picture_id = :pictureId'; //always use the PK in the where clause
+        $SQL = 'UPDATE `pictures` SET `description`=:description WHERE picture_id = :picture_id'; //always use the PK in the where clause
         $STMT = self::$_connection->prepare($SQL);
-        $STMT->execute(['description' => $this->description, 'pictureId' => $this->pictureId]); //associative array with key => value pairs
+        $STMT->execute(['description' => $this->description, 'picture_id' => $this->picture_id]); //associative array with key => value pairs
     }
 
-    public function delete($pictureId)
+    public function delete($picture_id)
     { //delete a vaccine record
-        $SQL = 'DELETE FROM `pictures` WHERE picture_id = :pictureId';
+        $SQL = 'DELETE FROM `pictures` WHERE picture_id = :picture_id';
         $STMT = self::$_connection->prepare($SQL);
-        $STMT->execute(['pictureId' => $pictureId]); //associative array with key => value pairs
+        $STMT->execute(['picture_id' => $picture_id]); //associative array with key => value pairs
     }
 }

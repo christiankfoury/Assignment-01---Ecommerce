@@ -17,7 +17,7 @@ foreach($data as $person) {
 				<a href='/Main/edit/$person->person_id'>edit</a> |
 				<a href='/Main/delete/$person->person_id'>delete</a> |
 				<a href='/Address/index/$person->person_id'>address</a> |
-				<a href=''>pictures</a> |
+				<a href='/Picture/index/$person->person_id'>pictures</a> |
 			</td>
 		</tr>";
 }

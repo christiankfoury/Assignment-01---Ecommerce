@@ -1,7 +1,7 @@
 <html>
 <head><title>Picture for this person</title></head><body>
 
-<a href="/Address/insert/<?php echo $data['picture']->person_id; ?>">Create a new address</a>
+<a href="/Picture/insert/<?php echo $data['picture']->person_id; ?>">Create a new picture</a>
 
 <?php $this->view('Main/details',$data['person']); //call the animal details view ?>
 
@@ -12,18 +12,13 @@
 foreach($data['pictures'] as $picture){
 
 	echo "<tr>
-			<td>$address->address_id</td>
-			<td>$address->person_id</td>
-			<td>$address->description</td>
-			<td>$address->street_address</td>
-			<td>$address->city</td>
-			<td>$address->province</td>
-			<td>$address->zip_code</td>
-			<td>$address->country_code</td>
+			<td>$picture->picture_id</td>
+			<td>$picture->person_id</td>
+			<td>$picture->description</td>
 			<td>
-				<a href='/Address/details/$address->address_id'>details</a> | 
-				<a href='/Address/edit/$address->address_id'>edit</a> | 
-				<a href='/Address/delete/$address->address_id'>delete</a>
+				<a href='/Picture/details/$picture->picture_id'>details</a> | 
+				<a href='/Picture/edit/$picture->picture_id'>edit</a> | 
+				<a href='/Picture/delete/$picture->picture_id'>delete</a>
 			</td>
 		</tr>";
 }
