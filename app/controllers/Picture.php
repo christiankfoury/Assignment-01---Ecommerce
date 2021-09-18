@@ -58,11 +58,10 @@ class Picture extends \app\core\Controller{
 	// 		$this->view('Address/edit',$address);
 	// }
 
-	// public function details($address_id){
-	// 	$address = new \app\models\Address;
-	// 	$address = $address->get($address_id);
-	// 	$this->view('Address/details',$address);
-	// }
-
+	public function details($picture_id){
+		$picture = new \app\models\Picture;
+		$picture = $picture->get($picture_id);
+		$this->view('Picture/details',$picture);
+	}
 	
 }
