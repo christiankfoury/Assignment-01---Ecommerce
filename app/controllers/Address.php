@@ -29,9 +29,8 @@ class Address extends \app\core\Controller{
 			$address->zip_code = $_POST['zip_code'];
 			$address->country_code = $_POST['country_code'];
 			$address->insert();
-			echo "HI";
 			//redirect the user back to the index
-			// header("location:/Address/index/$person_id");
+			header("location:/Address/index/$person_id");
 
 		}else //1 present a form to the user
 			$this->view('Address/create',$person);
