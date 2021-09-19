@@ -63,13 +63,14 @@ class Main extends \app\core\Controller{
 	}
 
 	public function search() {
-		$person = new \app\models\Person;
+		$person = [];
 		if (isset($_POST['search'])) { //am i submitting the form?
 			//handle the input overwriting the existing properties
-			$person = $person->search($_POST['searchTextbox']);
-			echo 'print_r($person)';
+			$person = new \app\models\Person;
+			$value = $_POST['searchTextbox'];
+			$person = $person->search($value);
 			$this->view('Main/searchResults', $person);
 		} else
-			$this->view('Main/index');
+			$this->view('Main/searchResults', $person);
 	}
 }

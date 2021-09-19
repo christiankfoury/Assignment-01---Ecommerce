@@ -96,9 +96,9 @@ class Person extends \app\core\Model{
 
 	public function search($value) {
 		$SQL = 'SELECT * FROM person_information WHERE person_id = :person_id OR first_name = :first_name OR last_name = :last_name OR notes = :notes';
-		$STMT = self::$_connection->query($SQL);
-		$STMT->execute(['person_id' => $value, 'first_name' => $value, "last_name" => $value, 'notes' => $value]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS, 'app\\models\\Person');
-		return $STMT->fetchAll();//returns an array of all the records
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['person_id'=>$value,'first_name'=>$value,'last_name'=>$value,'notes'=>$value]);
+		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Person');
+		return $STMT->fetchAll();//return the record
 	}
 }

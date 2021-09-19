@@ -3,6 +3,11 @@
 <h1>Search Results</h1>
 <table>
 	<tr><th>Person ID</th><th>First Name</th><th>Last Name</th><th>Notes</th></tr>
+
+<form action='' method='post'>
+	Search for a person: <input type="text" name="searchTextbox">
+	<input type="submit" value="Search" name="search">
+</form>
 <?php
 foreach($data as $person) {
 
@@ -21,5 +26,6 @@ foreach($data as $person) {
 		</tr>";
 }
 ?>
+<br>
 <a href='/Main/index'>Back to list</a>
 </body></html>
