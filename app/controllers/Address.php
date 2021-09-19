@@ -39,7 +39,7 @@ class Address extends \app\core\Controller{
 	public function delete($address_id){//delete a record with the known animal_id PK value
 		$address = new \app\models\Address;
 		$address->delete($address_id);
-		header('location:/Main/details/$address_id');
+		header('location:/Main/index');
 	}
 
 	public function edit($address_id){//edit a record for te record with known animal_id PK
