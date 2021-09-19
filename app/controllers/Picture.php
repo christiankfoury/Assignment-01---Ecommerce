@@ -31,13 +31,13 @@ class Picture extends \app\core\Controller{
 			$this->view('Picture/create',$person);
 	}
 
-	public function delete($picture_id){//delete a record with the known animal_id PK value
+	public function delete($picture_id, $person_id){//delete a record with the known animal_id PK value
 		$picture = new \app\models\Picture;
 		$picture->delete($picture_id);
-		header('location:/Main/index');
+		header("location:/Main/details/$person_id");
 	}
 
-	public function edit($picture_id){//edit a record for te record with known animal_id PK
+	public function edit($picture_id, $person_id){//edit a record for te record with known animal_id PK
 		$picture = new \app\models\Picture;
 		$picture = $picture->get($picture_id);
 
@@ -48,7 +48,7 @@ class Picture extends \app\core\Controller{
 			$picture->description = $_POST['description'];
 			$picture->update(); //call the update SQL
 			//redirect after changes
-			header('location:/Main/index');
+			header("location:/Main/details/$person_id");
 		}else
 			$this->view('Picture/edit',$picture);
 	}

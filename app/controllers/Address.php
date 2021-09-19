@@ -36,13 +36,13 @@ class Address extends \app\core\Controller{
 			$this->view('Address/create',$person);
 	}
 
-	public function delete($address_id){//delete a record with the known animal_id PK value
+	public function delete($address_id, $person_id){//delete a record with the known animal_id PK value
 		$address = new \app\models\Address;
 		$address->delete($address_id);
-		header('location:/Main/index');
+		header("location:/Main/details/$person_id");
 	}
 
-	public function edit($address_id){//edit a record for te record with known animal_id PK
+	public function edit($address_id, $person_id){//edit a record for te record with known animal_id PK
 		$address = new \app\models\Address;
 		$address = $address->get($address_id);
 
@@ -58,7 +58,7 @@ class Address extends \app\core\Controller{
 			$address->country_code = $_POST['country_code'];
 			$address->update(); //call the update SQL
 			//redirect after changes
-			header('location:/Main/index');
+			header("location:/Main/details/$person_id");
 		}else
 			$this->view('Address/edit',$address);
 	}

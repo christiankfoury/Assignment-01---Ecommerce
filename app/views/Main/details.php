@@ -12,7 +12,7 @@ Notes: <input disabled type='text' name='notes' value='<?php echo $data->notes; 
 
 <table>
 	<tr><th>Address ID</th><th>Person ID</th><th>Description</th><th>Street Address</th>
-	<th>city</th><th>province</th><th>zip code</th><th>country code</th></tr>
+	<th>City</th><th>province</th><th>zip code</th><th>country code</th></tr>
 <?php
 $address = new \app\models\Address;
 $address = $address->getAll($data->person_id);
@@ -29,8 +29,8 @@ foreach($address as $data){
 			<td>$data->country_code</td>
 			<td>
 				<a href='/Address/details/$data->address_id'>details</a> | 
-				<a href='/Address/edit/$data->address_id'>edit</a> | 
-				<a href='/Address/delete/$data->address_id'>delete</a>
+				<a href='/Address/edit/$data->address_id/$data->person_id'>edit</a> | 
+				<a href='/Address/delete/$data->address_id/$data->person_id'>delete</a>
 			</td>
 		</tr>";
 }
@@ -51,8 +51,8 @@ foreach($picture as $data){
 			<td>$data->description</td>
 			<td>
 				<a href='/Picture/details/$data->picture_id'>details</a> | 
-				<a href='/Picture/edit/$data->picture_id'>edit</a> | 
-				<a href='/Picture/delete/$data->picture_id'>delete</a>
+				<a href='/Picture/edit/$data->picture_id/$data->person_id'>edit</a> | 
+				<a href='/Picture/delete/$data->picture_id/$data->person_id'>delete</a>
 			</td>
 		</tr>";
 }
