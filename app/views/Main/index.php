@@ -1,7 +1,7 @@
 <html>
 <head><title>Person Information Manager</title></head><body>
 
-<a href="/Main/insert">Add a new person</a>
+<a href="/Main/insert">Add a new person</a> <br>
 Search for a person: <input type="text" name="search">
 <input type="submit" value="Search" name="search">
 <table>
