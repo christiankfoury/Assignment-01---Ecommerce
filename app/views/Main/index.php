@@ -2,6 +2,8 @@
 <head><title>Person Information Manager</title></head><body>
 
 <a href="/Main/insert">Add a new person</a>
+Search for a person: <input type="text" name="search">
+<input type="submit" value="Search" name="search">
 <table>
 	<tr><th>Person ID</th><th>First Name</th><th>Last Name</th><th>Notes</th></tr>
 <?php
