@@ -62,4 +62,9 @@ class Main extends \app\core\Controller{
 		$this->view('Main/details',$person);
 	}
 
+	public function search() {
+		$person = new \app\models\Person;
+		$person = $person->search();
+		$this->view('Main/searchResults', $person);
+	}
 }
