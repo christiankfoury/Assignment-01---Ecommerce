@@ -14,7 +14,17 @@ class Main extends \app\core\Controller{
 		//2- extend this base class in your Animal model
 
 		//note: the paths here are not subject to namespacing because these are NOT classes
-		$this->view('Main/index',$results);
+		// $this->view('Main/index',$results);
+
+		$person = new \app\models\Person();
+		if (isset($_POST['search'])) { //am i submitting the form?
+			//handle the input overwriting the existing properties
+			$person = new \app\models\Person;
+			$value = $_POST['searchTextbox'];
+			$person = $person->search($value);
+			$this->view('Main/index', $person);
+		} else
+			$this->view('Main/index', $person->getAll());
 	}
 
 	public function insert(){//insert a new record ne known PK yet
