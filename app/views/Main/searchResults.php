@@ -20,5 +20,6 @@ foreach($data as $person) {
 			</td>
 		</tr>";
 }
+?>
 <a href='/Main/index'>Back to list</a>
 </body></html>
