@@ -2,20 +2,6 @@
 namespace app\controllers;
 
 class Picture extends \app\core\Controller{
-
-	// public function index($person_id){//listing the records related to an animal
-	// 	$myPicture = new \app\models\Picture();
-	// 	$results = $myPicture->getAll($person_id);//get all shots for this one animal
-
-	// 	$person = new \app\models\Person;
-	// 	$person = $person->get($person_id);
-
-	// 	// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
-	// 	// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
-	// 	$this->view('Picture/index',['pictures'=>$results,'person'=>$person]);
-	// }
-
-
 	// Insert a picture from a known person_id
 	public function insert($person_id){
 		$person = new \app\models\Person;

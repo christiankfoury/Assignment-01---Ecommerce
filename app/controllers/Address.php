@@ -2,19 +2,6 @@
 namespace app\controllers;
 
 class Address extends \app\core\Controller{
-
-	// public function index($person_id){//listing the records related to an animal
-	// 	$myAddress = new \app\models\Address();
-	// 	$results = $myAddress->getAll($person_id);//get all shots for this one animal
-
-	// 	$person = new \app\models\Person;
-	// 	$person = $person->get($person_id);
-
-	// 	// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
-	// 	// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
-	// 	$this->view('Address/index',['addresses'=>$results,'person'=>$person]);
-	// }
-
 	// Insert a person with a known person_id
 	public function insert($person_id){
 		$person = new \app\models\Person;

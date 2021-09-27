@@ -68,18 +68,4 @@ class Main extends \app\core\Controller{
 		$picture = $picture->getAll($person_id);
 		$this->view('Main/details',['person'=>$person, 'address'=>$address, 'picture'=>$picture]);
 	}
-
-	// // Search a person with the first_name/last_name/person_id
-	// public function search() {
-	// 	$person = [];
-	// 	if (isset($_POST['search'])) { //if form was submitted
-	// 		// Handle the input overwriting the existing properties
-	// 		$person = new \app\models\Person;
-	// 		$value = $_POST['searchTextbox'];
-	// 		$person = $person->search($value);
-	// 		$this->view('Main/index', $person);
-	// 	} else
-	// 		// if was search was not submitted, present a search 
-	// 		$this->view('Main/index', $person);
-	// }
 }

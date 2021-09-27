@@ -16,8 +16,6 @@ Notes: <input disabled type='text' name='notes' value='<?php echo $data['person'
 	<th>City</th><th>Province</th><th>Zip Code</th><th>Country Name</th></tr>
 <?php
 foreach($data['address'] as $address){
-	// $addressObject = new \app\models\Address;
-	// $country_name = $addressObject->getCountry($address->country_code);
 	echo "<tr>
 			<td>$address->description</td>
 			<td>$address->street_address</td>
