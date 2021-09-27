@@ -3,36 +3,25 @@ namespace app\controllers;
 
 class Main extends \app\core\Controller{
 
-	public function index(){//listing the records
-		//instead of
-		$myPerson = new \app\models\Person();
-
-		$results = $myPerson->getAll();
-
-		//TODO: we want to get all models to extend a Model base class in app\core.
-		//1- create a Model base class with a constructor method
-		//2- extend this base class in your Animal model
-
-		//note: the paths here are not subject to namespacing because these are NOT classes
-		// $this->view('Main/index',$results);
-
+	// Listing all records of person
+	public function index(){
 		$person = new \app\models\Person();
-		if (isset($_POST['search'])) { //am i submitting the form?
-			//handle the input overwriting the existing properties
+		if (isset($_POST['search'])) { // if form was submitted
+			// search box
 			$person = new \app\models\Person;
 			$value = $_POST['searchTextbox'];
 			$person = $person->search($value);
 			$this->view('Main/index', $person);
 		} else
+			// if search post was not submitted present all person records
 			$this->view('Main/index', $person->getAll());
 	}
 
-	public function insert(){//insert a new record ne known PK yet
-		//2 steps
-		//2 get the information from the user and input it in the DB
-		if(isset($_POST['action'])){//verify that the user clicked the submit button
+	// Insert a record of person
+	public function insert(){
+		if(isset($_POST['action'])){// if post was submitted
 			$person = new \app\models\Person();
-			// 
+			//  Post data
 			$person->setFirst_Name($_POST['first_name']);
 			$person->setLast_Name($_POST['last_name']);
 			$person->setNotes($_POST['notes']);
@@ -40,47 +29,57 @@ class Main extends \app\core\Controller{
 			//redirect the user back to the index
 			header('location:/Main/index');
 
-		}else //1 present a form to the user
+		} else // present view of addPerson
 			$this->view('Main/addPerson');
 	}
 
-	public function delete($person_id){//delete a record with the known animal_id PK value
+	// Delete a record of a person_id
+	public function delete($person_id){
 		$person = new \app\models\Person;
 		$person->delete($person_id);
+		// Redirect to main index
 		header('location:/Main/index');
 	}
 
-	public function edit($person_id){//edit a record for te record with known animal_id PK
+	// Edit a record of person of a known person_id
+	public function edit($person_id){
 		$person = new \app\models\Person;
 		$person = $person->get($person_id);
 
-		if(isset($_POST['action'])){//am i submitting the form?
-			//handle the input overwriting the existing properties
+		if(isset($_POST['action'])){// if form was submitted
+			// Handle the input overwriting the existing properties
 			$person->setFirst_Name($_POST['first_name']);
 			$person->setLast_Name($_POST['last_name']);
 			$person->setNotes($_POST['notes']);
 			$person->update();//call the update SQL
-			//redirect after changes
+			// Redirect after changes
 			header('location:/Main/index');
 		}else
 			$this->view('Main/edit',$person);
 	}
 
+	// Present the details of person
 	public function details($person_id){
 		$person = new \app\models\Person;
 		$person = $person->get($person_id);
-		$this->view('Main/details',$person);
+		$address = new \app\models\Address;
+		$address = $address->getAll($person_id);
+		$picture = new \app\models\Picture;
+		$picture = $picture->getAll($person_id);
+		$this->view('Main/details',['person'=>$person, 'address'=>$address, 'picture'=>$picture]);
 	}
 
-	public function search() {
-		$person = [];
-		if (isset($_POST['search'])) { //am i submitting the form?
-			//handle the input overwriting the existing properties
-			$person = new \app\models\Person;
-			$value = $_POST['searchTextbox'];
-			$person = $person->search($value);
-			$this->view('Main/searchResults', $person);
-		} else
-			$this->view('Main/searchResults', $person);
-	}
+	// // Search a person with the first_name/last_name/person_id
+	// public function search() {
+	// 	$person = [];
+	// 	if (isset($_POST['search'])) { //if form was submitted
+	// 		// Handle the input overwriting the existing properties
+	// 		$person = new \app\models\Person;
+	// 		$value = $_POST['searchTextbox'];
+	// 		$person = $person->search($value);
+	// 		$this->view('Main/index', $person);
+	// 	} else
+	// 		// if was search was not submitted, present a search 
+	// 		$this->view('Main/index', $person);
+	// }
 }

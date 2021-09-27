@@ -6,15 +6,10 @@ class Person extends \app\core\Model{
 	public $first_name;
 	public $last_name;
 	public $notes;
-	// static $number;
 
 	public function __construct(){
 		parent::__construct();
 	}
-
-	// public function getNumberOfAnimals(){
-	// 	return self::$number;
-	// }
 
 	public function setPerson_Id($person_id){
 		$this->person_id = $person_id;
@@ -49,6 +44,7 @@ class Person extends \app\core\Model{
 	}
 
 
+	// Get all person records
 	public function getAll(){
 		$SQL = 'SELECT * FROM person_information';
 		$STMT = self::$_connection->query($SQL);
@@ -56,6 +52,7 @@ class Person extends \app\core\Model{
 		return $STMT->fetchAll();//returns an array of all the records
 	}
 
+	// Get person data from a person_id
 	public function get($person_id){
 		$SQL = 'SELECT * FROM person_information WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
@@ -64,23 +61,23 @@ class Person extends \app\core\Model{
 		return $STMT->fetch();//return the record
 	}
 
-	// ** CONTINUE FROM HERE
-
+	// Insert a person
 	public function insert(){
 		$SQL = 'INSERT INTO person_information(first_name, last_name, notes) VALUES (:first_name,:last_name,:notes)';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name,'notes'=>$this->notes]);//associative array with key => value pairs
 	}
 
-	public function update(){//update an animal record
+	// Update a person record
+	public function update(){
 		$SQL = 'UPDATE `person_information` SET `first_name`=:first_name,`last_name`=:last_name,`notes`=:notes WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['first_name'=>$this->first_name,'last_name'=>$this->last_name, 'notes' => $this->notes, 'person_id'=>$this->person_id]);//associative array with key => value pairs
 	}
 
 
-	// TODO DELETE ***
-	public function delete($person_id){ //update an animal record
+	// Delete a person record along with address and picture asssociated with that person
+	public function delete($person_id){
 		$SQL = 'DELETE FROM `address_information` WHERE person_id = :person_id';
 		$STMT = self::$_connection->prepare($SQL);
 		$STMT->execute(['person_id' => $person_id]);
@@ -94,11 +91,12 @@ class Person extends \app\core\Model{
 		$STMT->execute(['person_id'=>$person_id]);
 	}
 
+	// Search people where their first_name/last_name/notes is equal to it
 	public function search($value) {
-		$SQL = 'SELECT * FROM person_information WHERE person_id = :person_id OR first_name = :first_name OR last_name = :last_name OR notes = :notes';
-		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['person_id'=>$value,'first_name'=>$value,'last_name'=>$value,'notes'=>$value]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Person');
-		return $STMT->fetchAll();//return the record
-	}
+        $SQL = 'SELECT * FROM person_information WHERE first_name LIKE :first_name OR last_name LIKE :last_name OR notes LIKE :notes';
+        $STMT = self::$_connection->prepare($SQL);
+        $STMT->execute(['first_name'=>"%$value%",'last_name'=>"%$value%",'notes'=>"%$value%"]);
+        $STMT->setFetchMode(\PDO::FETCH_CLASS,'app\models\Person');
+        return $STMT->fetchAll();//return the record
+    }
 }

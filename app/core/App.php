@@ -1,10 +1,5 @@
 <?php
-//routing of the requests happens here
-//maping urls to classes and methods
 
-/*
-multiline comment
-*/
 namespace app\core;
 
 class App{
@@ -13,13 +8,8 @@ class App{
 	private $method = 'index';
 	private $params = [];
 
+	// Constructor
 	public function __construct(){
-		//TODO: implement the routing to map the URL to the actual controllers and methods
-		//map urls such as localhost/controllername/methodname to the execution of method methodname from class controllername
-		//eg. http://localhost/Main/index maps to the index method of the Main controller class
-		//e.g. http://localhost/Animal/breed/param1/param2
-		//maps to the breed method of the Animal controller class with parameters param1 and param2
-
 		//parse incoming urls to an array containing the url components
 		$url = $this->parseURL();
 
@@ -34,7 +24,7 @@ class App{
 		//$this->controller becomes an object of the requested type
 		$this->controller = new $this->controller;
 
-		//check and choose the method
+		// Verify and choose the method
 		if(isset($url[1])){
 			if(method_exists($this->controller, $url[1])){
 				$this->method = $url[1];
@@ -45,19 +35,18 @@ class App{
 		//take care of any parameter
 		$this->params = $url ? array_values($url) : [];
 
-		//run this command below:
+		// Run the command from class, method, with the following parameters
 		call_user_func_array(array($this->controller, $this->method), $this->params);
 	}
 
-	//"Default/index"
-	//["Default", "index"]
+	// Parse URl in an array
 	public function parseURL(){
-		//check that the url is passed as a GET parameter
-		if(isset($_GET['url'])){ //assuming we have passed the url (http://localhost/index.php?url=/the/url/goes/here => ['the','url','goes','here']) 
+		// Check that the url is passed as a GET parameter
+		if(isset($_GET['url'])){ 
 			return explode('/', 
 				filter_var(
-					rtrim($_GET['url'], '/'),//remove he trailing /
-					 FILTER_SANITIZE_URL)//filter out non-url compliant characters
+					rtrim($_GET['url'], '/'),
+					 FILTER_SANITIZE_URL)
 			);
 		}
 	}

@@ -3,20 +3,21 @@ namespace app\controllers;
 
 class Picture extends \app\core\Controller{
 
-	public function index($person_id){//listing the records related to an animal
-		$myPicture = new \app\models\Picture();
-		$results = $myPicture->getAll($person_id);//get all shots for this one animal
+	// public function index($person_id){//listing the records related to an animal
+	// 	$myPicture = new \app\models\Picture();
+	// 	$results = $myPicture->getAll($person_id);//get all shots for this one animal
 
-		$person = new \app\models\Person;
-		$person = $person->get($person_id);
+	// 	$person = new \app\models\Person;
+	// 	$person = $person->get($person_id);
 
-		// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
-		// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
-		$this->view('Picture/index',['pictures'=>$results,'person'=>$person]);
-	}
+	// 	// GOING TO HAVE TO CHANGE THE DATA TRANSFERING IN THE VIEW
+	// 	// $this->view('Vaccine/index', ['vaccines' => $results, 'animal' => $person]);
+	// 	$this->view('Picture/index',['pictures'=>$results,'person'=>$person]);
+	// }
 
 
-	public function insert($person_id){//insert a new record ne known PK yet but I know the FK
+	// Insert a picture from a known person_id
+	public function insert($person_id){
 		$person = new \app\models\Person;
 		$person = $person->get($person_id);
 		if(isset($_POST['action'])){//verify that the user clicked the submit button
@@ -24,35 +25,42 @@ class Picture extends \app\core\Controller{
             $picture->person_id = $person_id;
 			$picture->description = $_POST['description'];
 			$picture->insert();
-			//redirect the user back to the index
-			header("location:/Picture/index/$person_id");
+			// Redirect the user back to the details of that person
+			header("location:/Main/details/$person_id");
 
-		}else //1 present a form to the user
-			$this->view('Picture/create',$person);
+		}else{
+			// data for Main/details/person_id since address insert includes Main/details/person_id
+			$address = new \app\models\Address;
+			$address = $address->getAll($person_id);
+			$picture = new \app\models\Picture;
+			$picture = $picture->getAll($person_id);
+			$this->view('Picture/create', ['person' => $person, 'address' => $address, 'picture' => $picture]);
+		} 
+			
 	}
 
-	public function delete($picture_id, $person_id){//delete a record with the known animal_id PK value
+	// Delete a picture with an picture_id and redirect with the person_id
+	public function delete($picture_id, $person_id){
 		$picture = new \app\models\Picture;
 		$picture->delete($picture_id);
 		header("location:/Main/details/$person_id");
 	}
 
-	public function edit($picture_id, $person_id){//edit a record for te record with known animal_id PK
+	// Edit a picture with an picture_id and redirect with the person_id/picture_id depending if the post was set
+	public function edit($picture_id, $person_id){
 		$picture = new \app\models\Picture;
 		$picture = $picture->get($picture_id);
 
-		if(isset($_POST['action'])){//am i submitting the form?
-			//handle the input overwriting the existing properties
-			$picture->picture_id = $_POST['picture_id'];
-			$picture->person_id = $_POST['person_id'];
+		if(isset($_POST['action'])){// if form submitted?
 			$picture->description = $_POST['description'];
 			$picture->update(); //call the update SQL
-			//redirect after changes
+			// Redirect after changes
 			header("location:/Main/details/$person_id");
 		}else
 			$this->view('Picture/edit',$picture);
 	}
 
+	// Present the details of a picture with the picture_id
 	public function details($picture_id){
 		$picture = new \app\models\Picture;
 		$picture = $picture->get($picture_id);

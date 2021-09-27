@@ -1,10 +1,10 @@
 <html>
-<head><title>Add a Vaccine</title></head><body>
+<head><title>Add an Address</title></head><body>
 
-<?php $this->view('Main/details',$data); //call the animal details view ?>
+<?php $this->view('Main/details',$data); ?>
 <br><br>
 Adding an address for  
-<?php echo $data-> person_id, ", ", $data->last_name, ", ", $data->first_name; ?>
+<?php echo $data['person']->last_name, ", ", $data['person']->first_name; ?>
 
 <form action='' method='post'>
 	Description: <input type='text' name='description' /><br>
@@ -17,7 +17,7 @@ Adding an address for
     	$myAddress = new \app\models\Address();
 		$countryResult = $myAddress->getCountries();?>
 		<?php foreach ($countryResult as $country) {?>
-			<option value="<?php echo $country->country_code;?>"><?php echo $country->country_code;?></option>
+			<option value="<?php echo $country->country_code;?>"><?php echo $country->country_name;?></option>
 		<?php }?>
     </select><br>
 	<input type='submit' name='action' value='Create' />

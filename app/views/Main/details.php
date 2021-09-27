@@ -1,36 +1,34 @@
 <html>
 <head><title>Person details</title></head><body>
 <h1>Person details</h1>
-First Name: <input disabled type='text' name='first_name' value='<?php echo $data->first_name; ?>' /><br>
-Last Name: <input disabled type='text' name='last_name' value='<?php echo $data->last_name; ?>' /><br>
-Notes: <input disabled type='text' name='notes' value='<?php echo $data->notes; ?>' /><br>
+First Name: <input disabled type='text' name='first_name' value='<?php echo $data['person']->first_name; ?>' /><br>
+Last Name: <input disabled type='text' name='last_name' value='<?php echo $data['person']->last_name; ?>' /><br>
+Notes: <input disabled type='text' name='notes' value='<?php echo $data['person']->notes; ?>' /><br><br>
 
 <a href='/Main/index'>Back to list</a>
 <br>
-<a href="/Address/insert/<?php echo $data->person_id; ?>">Create a new address</a><br>
-<a href="/Picture/insert/<?php echo $data->person_id; ?>">Create a new picture</a>
+<a href="/Address/insert/<?php echo $data['person']->person_id; ?>">Create a new address</a><br>
+<a href="/Picture/insert/<?php echo $data['person']->person_id; ?>">Create a new picture</a><br><br>
 
-<table>
-	<tr><th>Address ID</th><th>Person ID</th><th>Description</th><th>Street Address</th>
-	<th>City</th><th>province</th><th>zip code</th><th>country code</th></tr>
+<h2>Address</h2>
+<table border="1">
+	<tr><th>Description</th><th>Street Address</th>
+	<th>City</th><th>Province</th><th>Zip Code</th><th>Country Name</th></tr>
 <?php
-$address = new \app\models\Address;
-$address = $address->getAll($data->person_id);
-foreach($address as $data){
-
+foreach($data['address'] as $address){
+	// $addressObject = new \app\models\Address;
+	// $country_name = $addressObject->getCountry($address->country_code);
 	echo "<tr>
-			<td>$data->address_id</td>
-			<td>$data->person_id</td>
-			<td>$data->description</td>
-			<td>$data->street_address</td>
-			<td>$data->city</td>
-			<td>$data->province</td>
-			<td>$data->zip_code</td>
-			<td>$data->country_code</td>
+			<td>$address->description</td>
+			<td>$address->street_address</td>
+			<td>$address->city</td>
+			<td>$address->province</td>
+			<td>$address->zip_code</td>
+			<td>$address->country_name</td>
 			<td>
-				<a href='/Address/details/$data->address_id'>details</a> | 
-				<a href='/Address/edit/$data->address_id/$data->person_id'>edit</a> | 
-				<a href='/Address/delete/$data->address_id/$data->person_id'>delete</a>
+				<a href='/Address/details/$address->address_id'>details</a> | 
+				<a href='/Address/edit/$address->address_id/$address->person_id'>edit</a> | 
+				<a href='/Address/delete/$address->address_id/$address->person_id'>delete</a>
 			</td>
 		</tr>";
 }
@@ -38,21 +36,18 @@ foreach($address as $data){
 </table>
 
 <br>
-<table>
-	<tr><th>Picture ID</th><th>Person ID</th><th>Description</th></tr>
+<h2>Picture</h2>
+<table border="1">
+	<tr><th>Description</th></tr>
 <?php
-$picture = new \app\models\Picture;
-$picture = $picture->getAll($data->person_id);
-foreach($picture as $data){
+foreach($data['picture'] as $picture){
 
 	echo "<tr>
-			<td>$data->picture_id</td>
-			<td>$data->person_id</td>
-			<td>$data->description</td>
+			<td>$picture->description</td>
 			<td>
-				<a href='/Picture/details/$data->picture_id'>details</a> | 
-				<a href='/Picture/edit/$data->picture_id/$data->person_id'>edit</a> | 
-				<a href='/Picture/delete/$data->picture_id/$data->person_id'>delete</a>
+				<a href='/Picture/details/$picture->picture_id'>details</a> | 
+				<a href='/Picture/edit/$picture->picture_id/$picture->person_id'>edit</a> | 
+				<a href='/Picture/delete/$picture->picture_id/$picture->person_id'>delete</a>
 			</td>
 		</tr>";
 }

@@ -1,10 +1,10 @@
 <html>
 <head><title>Add a Picture</title></head><body>
 
-<?php $this->view('Main/details',$data); //call the animal details view ?>
+<?php $this->view('Main/details',$data); ?>
 <br><br>
 Adding a Picture for  
-<?php echo $data-> person_id, ", ", $data->last_name, ", ", $data->first_name; ?>
+<?php echo $data['person']->last_name, ", ", $data['person']->first_name; ?>
 
 <form action='' method='post'>
     Description: <input type='text' name='description' /><br>

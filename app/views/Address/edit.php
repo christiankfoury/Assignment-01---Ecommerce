@@ -8,12 +8,12 @@
 	City: <input type='text' name='city' value='<?php echo $data->city; ?>' /><br>
     Province: <input type='text' name='province' value='<?php echo $data->province; ?>' /><br>
     Zip Code: <input type='text' name='zip_code' value='<?php echo $data->zip_code; ?>' /><br>
-    Country Code: <select name="country_code">
+    Country Name: <select name="country_code">
     	<?php
     	$myAddress = new \app\models\Address();
 		$countryResult = $myAddress->getCountries();?>
 		<?php foreach ($countryResult as $country) {?>
-			<option value="<?php echo $country->country_code;?>"><?php echo $country->country_code;?></option>
+			<option value="<?php echo $country->country_code;?>"><?php echo $country->country_name;?></option>
 		<?php }?>
     </select><br>
 	<input type='submit' name='action' value='Save changes' />

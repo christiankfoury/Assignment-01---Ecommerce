@@ -3,18 +3,18 @@
 <h1>Person Information Manager</h1>
 <a href="/Main/insert">Add a new person</a> <br>
 <a href='/Main/index'>Back to list</a> <br>
-<table>
-	<tr><th>Person ID</th><th>First Name</th><th>Last Name</th><th>Notes</th></tr>
 
 <form action='' method='post'>
 	Search for a person: <input type="text" name="searchTextbox">
 	<input type="submit" value="Search" name="search">
 </form>
+
+<table border="1">
+	<tr><th>First Name</th><th>Last Name</th><th>Notes</th></tr>
 <?php
 foreach($data as $person) {
 
 	echo "<tr>
-			<td>$person->person_id</td>
 			<td>$person->first_name</td>
 			<td>$person->last_name</td>
 			<td>$person->notes</td>
@@ -26,6 +26,5 @@ foreach($data as $person) {
 		</tr>";
 }
 ?>
-<br>
-<!-- <a href='/Main/index'>Back to list</a> -->
+</table>
 </body></html>

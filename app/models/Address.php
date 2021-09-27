@@ -15,14 +15,16 @@ class Address extends \app\core\Model{
 		parent::__construct();
 	}
 
-	public function getAll($person_id){//be careful to restrict by parent
-		$SQL = 'SELECT * FROM address_information WHERE person_id=:person_id';
-		$STMT = self::$_connection->prepare($SQL);
-		$STMT->execute(['person_id'=>$person_id]);
-		$STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Address');
-		return $STMT->fetchAll();//returns an array of all the records
-	}
+	// Get all addresseses for a person_id
+	public function getAll($person_id){
+        $SQL = 'SELECT * FROM address_information JOIN country ON address_information.country_code = country.country_code WHERE person_id=:person_id';
+        $STMT = self::$_connection->prepare($SQL);
+        $STMT->execute(['person_id'=>$person_id]);
+        $STMT->setFetchMode(\PDO::FETCH_CLASS,'app\\models\\Address');
+        return $STMT->fetchAll();//returns an array of all the records
+    }
 
+	// Get an address of an address_id
 	public function get($address_id){
 		$SQL = 'SELECT * FROM address_information WHERE address_id = :address_id';
 		$STMT = self::$_connection->prepare($SQL);
@@ -31,6 +33,7 @@ class Address extends \app\core\Model{
 		return $STMT->fetch();//return the record
 	}
 
+	// Get all countries
 	public function getCountries(){
 		$SQL = 'SELECT * FROM country';
 		$STMT = self::$_connection->prepare($SQL);
@@ -39,6 +42,15 @@ class Address extends \app\core\Model{
 		return $STMT->fetchAll();//return the record
 	}
 
+	// Get country name from a country code
+	public function getCountry($country_code) {
+		$SQL = 'SELECT country_name FROM country WHERE country_code=:country_code';
+		$STMT = self::$_connection->prepare($SQL);
+		$STMT->execute(['country_code'=>$country_code]);
+		return $STMT->fetch();
+	}
+
+	// Insert an address
 	public function insert(){
 		//here we will have to add `` around field names
 		$SQL = 'INSERT INTO address_information(person_id,description,street_address,city,province,zip_code,country_code)
@@ -55,7 +67,8 @@ class Address extends \app\core\Model{
 		]);//associative array with key => value pairs
 	}
 
-	public function update(){//update an vaccine record but don't hange the FK value
+	// Update an address
+	public function update(){
 		$SQL = 'UPDATE address_information SET person_id=:person_id,description=:description,street_address=:street_address
 				,city=:city,province=:province,zip_code=:zip_code,country_code=:country_code
 				 WHERE address_id=:address_id';//always use the PK in the where clause
@@ -71,7 +84,8 @@ class Address extends \app\core\Model{
 			'address_id'=>$this->address_id]);//associative array with key => value pairs
 	}
 
-	public function delete($address_id){//delete a vaccine record
+	// Delete an address
+	public function delete($address_id){
 		echo $address_id;
 		$SQL = 'DELETE FROM `address_information` WHERE address_id = :address_id';
 		$STMT = self::$_connection->prepare($SQL);
